@@ -7,6 +7,8 @@ before_install:
     - docker build -t pyuwsgi_wheel .
     - docker build --build-arg="NO_BINARY=pyuwsgi" -t pyuwsgi_sdist .
 
-script: docker run pyuwsgi_wheel; docker run pyuwsgi_sdist
+script: |
+    echo "Build from manylinux wheel:"; docker run pyuwsgi_wheel;
+    echo "Build from sdist"; docker run pyuwsgi_sdist
 
 
