@@ -1,7 +1,7 @@
 os: osx
 
 before_install:
-    - brew upgrade python
+    - brew upgrade python coreutils
     - brew install --with-python libxml2
     - pip3 install virtualenv
     - virtualenv --python=python3.7 /tmp/venv
@@ -11,4 +11,4 @@ install:
 
 script:
   - . /tmp/venv/bin/activate
-  - "for i in {1..30}; do pyuwsgi --master --buffer-size=1024; done"
+  - "for i in {1..30}; do date; gtimeout --preserve-status 5 pyuwsgi --master --buffer-size=1024; echo $?; done"
