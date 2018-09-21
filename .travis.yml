@@ -1,0 +1,9 @@
+os: osx
+
+before_install:
+    - virtualenv /tmp/venv
+
+install:
+    - /tmp/venv/pip install --no-binary=pyuwsgi pyuwsgi
+
+script: "for i in {1..30}; do pyuwsgi --master --buffer-size=1024 2>&1 | grep -i \"segmentation fault\" || echo ok; done"
