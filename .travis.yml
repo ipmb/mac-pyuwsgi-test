@@ -5,7 +5,7 @@ services:
 
 before_install:
     - docker build -t pyuwsgi_wheel .
-    - docker build -t --build-arg="NO_BINARY=pyuwsgi" pyuwsgi_sdist .
+    - docker build --build-arg="NO_BINARY=pyuwsgi" -t pyuwsgi_sdist .
 
 script: docker run pyuwsgi_wheel; docker run pyuwsgi_sdist
 
