@@ -2,6 +2,7 @@ os: osx
 
 before_install:
     - brew upgrade python
+    - brew install --with-python libxml2
     - pip3 install virtualenv
     - virtualenv --python=python3.7 /tmp/venv
 
