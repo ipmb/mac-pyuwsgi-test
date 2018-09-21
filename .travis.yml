@@ -6,6 +6,6 @@ before_install:
     - virtualenv --python=python3.7 /tmp/venv
 
 install:
-    - /tmp/venv/pip install --no-binary=pyuwsgi pyuwsgi
+    - /tmp/venv/bin/pip install --no-binary=pyuwsgi pyuwsgi
 
 script: "for i in {1..30}; do pyuwsgi --master --buffer-size=1024 2>&1 | grep -i \"segmentation fault\" || echo ok; done"
