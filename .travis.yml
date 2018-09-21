@@ -1,7 +1,9 @@
 os: osx
 
 before_install:
-    - virtualenv /tmp/venv
+    - brew install python
+    - pip3 install virtualenv
+    - virtualenv --python=python3.7 /tmp/venv
 
 install:
     - /tmp/venv/pip install --no-binary=pyuwsgi pyuwsgi
