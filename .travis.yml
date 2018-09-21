@@ -1,11 +1,12 @@
-os: osx
+sudo: required
+
+services:
+    - docker
 
 before_install:
-    - brew upgrade python
-    - pip3 install virtualenv
-    - virtualenv --python=python3.7 /tmp/venv
+    - docker build -t pyuwsgi_wheel .
+    - docker build -t --build-arg="NO_BINARY=pyuwsgi" pyuwsgi_sdist .
 
-install:
-    - /tmp/venv/pip install --no-binary=pyuwsgi pyuwsgi
+script: docker run pyuwsgi_wheel; docker run pyuwsgi_sdist
 
-script: "for i in {1..30}; do pyuwsgi --master --buffer-size=1024 2>&1 | grep -i \"segmentation fault\" || echo ok; done"
+
