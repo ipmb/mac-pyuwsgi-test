@@ -9,4 +9,6 @@ before_install:
 install:
     - /tmp/venv/bin/pip install --no-binary=pyuwsgi pyuwsgi
 
-script: "for i in {1..30}; do /tmp/venv/bin/pyuwsgi --master --buffer-size=1024; done"
+script:
+  - . /tmp/venv/bin/activate
+  - "for i in {1..30}; do pyuwsgi --master --buffer-size=1024; done"
